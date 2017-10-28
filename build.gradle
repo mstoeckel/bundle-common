@@ -1,0 +1,27 @@
+buildscript {
+	repositories {
+    		jcenter()
+       	dependencies {
+        		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+      	}
+    }
+}
+
+apply from: "$rootDir/gradle/base.gradle"
+
+dependencies {
+	compile "org.slf4j:slf4j-api:$slf4jVersion"
+    compile "org.jboss.weld.servlet:weld-servlet:$weldVersion"
+    testCompile "junit:junit:$junitVersion"
+}
+
+bintray {
+	pkg {
+        name = 'bundle-common'
+        desc = 'Dropwizard  bundle util'
+        labels = ['dropwizard', 'util', 'bundle']
+        websiteUrl = 'https://github.com/mstoeckel/bundle-common'
+        issueTrackerUrl = 'https://github.com/mstoeckel/bundle-common/issues'
+        vcsUrl = 'https://github.com/mstoeckel/bundle-common.git'
+	}
+}
