@@ -25,12 +25,14 @@ public class JndiSupport {
             ctx.rebind(name, value);
             logger.debug("successfully bound {} to {}", value, name);
         } finally {
-            ctx.close();
+            if (ctx != null) {
+                ctx.close();
+            }
         }
     }
 
     public static Object lookup(String name) {
-        InitialContext ctx = null;
+        Context ctx = null;
         try {
             ctx = new InitialContext();
             return ctx.lookup(name);
